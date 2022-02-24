@@ -1,10 +1,18 @@
-// const printer = require('./print')
-const printer = require('./print')
 
-function print() {
+// console.log("env variable name : ", process.env.NAME);
+// const printer = require('./print')
+const { print, print2 } = require('./print')
+
+function printapp() {
     console.log("app")
 }
-print();
-printer.print("saugat");
+printapp();
+
+
+// printer.print("saugat");
+// printer.print2();
+
+print2();
+
 // printer("saugat");
-console.log(module)
+// console.log(module)
