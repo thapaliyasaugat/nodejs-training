@@ -7,3 +7,4 @@ day-4 : async-js/callstack/message-queue/job-queue/micro&macro-function
         higher-order-function/callback-hell/promise
 day-5 : async-await/intro-to-typescript
 day-6 : express
+day-7 : Http methods - GET , PUT , DELETE, POST
