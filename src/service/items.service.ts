@@ -11,18 +11,32 @@ export const findById = async (id: Number) => {
     const item = mockItems.find(item => item.id === id);
     return Promise.resolve(item);
 }
+//add
+export const add = async (item: Items) => {
+    mockItems.push(item);
+    return Promise.resolve(item)
+}
 
 // delete item by id
 export const DeleteById = async (id: Number) => {
     // console.log(id)
     const item = mockItems.filter(item => item.id !== id);
-    return Promise.resolve(item);
+    if (item) {
+        return Promise.resolve(item);
+    } else {
+        return Promise.resolve(undefined)
+    }
 }
 
 
 // delete item by id
-export const PutItem = async (id: number, update: Object) => {
+export const PutItem = async (id: number, update: Items) => {
     const item = mockItems.find(item => item.id === id);
-    const updated = { ...item, ...update }
-    return Promise.resolve(updated);
+    if (item) {
+        const updated = { ...item, ...update }
+        return Promise.resolve(updated);
+    } else {
+        // return Promise.resolve("Items doesn't exit")
+        return Promise.resolve(undefined)
+    }
 }
