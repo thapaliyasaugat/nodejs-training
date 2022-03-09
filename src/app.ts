@@ -1,6 +1,9 @@
 import express, { Express, Request, Response } from 'express';
 import itemsRouter from './Router/items.router';
 import studentRouter from './Router/students.router';
+import dotenv from "dotenv"
+import { createConnection } from 'typeorm';
+dotenv.config();
 // const app: Express = express();
 
 // app.get('/', (req: Request, res: Response) => {
@@ -25,7 +28,7 @@ import studentRouter from './Router/students.router';
 // app.use("/student", studentRouter)
 
 //start server
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
 // console.log("server started at 8000")
 // });
@@ -44,7 +47,17 @@ class Server {
         this.app.use(express.json());
     }
 
-    public setupRoutes(): void {
+    public async setupRoutes(): Promise<void> {
+        await createConnection({
+            name: "test",
+            type: "mysql",
+            host: process.env.DB_HOST,
+            port: 3306,
+            username: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_DATABASE,
+            synchronize: true
+        })
         this.app.use("/items", itemsRouter);
         this.app.use("/students", studentRouter);
     }
