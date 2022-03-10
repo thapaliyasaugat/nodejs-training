@@ -2,8 +2,11 @@ import express, { Express, Request, Response } from 'express';
 import itemsRouter from './Router/items.router';
 import studentRouter from './Router/students.router';
 import dotenv from "dotenv"
+import path from 'path';
 import { createConnection } from 'typeorm';
-dotenv.config();
+import mysql from "./database/mysql"
+import userController from './controller/user.controller';
+dotenv.config({ path: path.resolve(__dirname, './.env') });
 // const app: Express = express();
 
 // app.get('/', (req: Request, res: Response) => {
@@ -55,11 +58,15 @@ class Server {
             port: 3306,
             username: process.env.DB_USERNAME,
             password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
+            // database: process.env.DB_DATABASE,
             synchronize: true
-        })
+
+        }).then(() => { console.log("database connected") })
+        // mysql();
         this.app.use("/items", itemsRouter);
         this.app.use("/students", studentRouter);
+        //user endpoints
+        this.app.use('/users', new userController().getRouter())
     }
 
     public start(): void {

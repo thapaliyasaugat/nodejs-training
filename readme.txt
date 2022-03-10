@@ -13,3 +13,4 @@ day-9 : Typescript-utilize classes and other oop features
         Database - mysql-download
         ORM - typeorm
         Beekeeper Studio -download
+day-10: typeorm on nodejs with mysql
