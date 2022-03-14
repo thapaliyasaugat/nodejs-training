@@ -4,7 +4,6 @@ import studentRouter from './Router/students.router';
 import dotenv from "dotenv"
 import path from 'path';
 import { createConnection } from 'typeorm';
-import mysql from "./database/mysql"
 import userController from './controller/user.controller';
 dotenv.config({ path: path.resolve(__dirname, './.env') });
 // const app: Express = express();
@@ -59,8 +58,8 @@ class Server {
             username: process.env.DB_USERNAME,
             password: process.env.DB_PASSWORD,
             // database: process.env.DB_DATABASE,
-            synchronize: true
-
+            synchronize: true,
+            entities: ['user']
         }).then(() => { console.log("database connected") })
         // mysql();
         this.app.use("/items", itemsRouter);
