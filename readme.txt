@@ -16,3 +16,4 @@ day-9 : Typescript-utilize classes and other oop features
 day-10: typeorm on nodejs with mysql
 day-11: controller and routes
 day-12: complete crud operations
+day-13: data_model:one-to-many,many-to-many,one-to-one

@@ -6,6 +6,8 @@ import path from 'path';
 import { createConnection } from 'typeorm';
 import userController from './controller/user.controller';
 import User from './model/user.model';
+import Picture from './model/picture.model';
+import PictureController from './controller/picture.controller';
 dotenv.config({ path: path.resolve(__dirname, './.env') });
 // const app: Express = express();
 
@@ -60,7 +62,7 @@ class Server {
             password: process.env.DB_PASSWORD,
             database: process.env.DB_DATABASE,
             synchronize: true,
-            entities: [User]
+            entities: [User, Picture]
         }).then(() => { console.log("database connected") }).catch(() => {
             console.log("error connecting db")
         })
@@ -69,6 +71,7 @@ class Server {
         // this.app.use("/students", studentRouter);
         //user endpoints
         this.app.use('/users', new userController().getRouter())
+        this.app.use('/pictures', new PictureController().getRouter())
     }
 
     public start(): void {
