@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import User from "./user.model";
 
 @Entity('picture')
@@ -11,6 +11,7 @@ class Picture {
 
     // many to many
     @ManyToOne(() => User, (user) => user.id)
+    @JoinColumn()
     public user!: User;
 
     // many to many
