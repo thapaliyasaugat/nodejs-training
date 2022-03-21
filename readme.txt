@@ -15,3 +15,4 @@ day-9 : Typescript-utilize classes and other oop features
         Beekeeper Studio -download
 day-10: typeorm on nodejs with mysql
 day-11: controller and routes
+day-12: complete crud operations

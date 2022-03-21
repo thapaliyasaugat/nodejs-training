@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import path from 'path';
 import { createConnection } from 'typeorm';
 import userController from './controller/user.controller';
+import User from './model/user.model';
 dotenv.config({ path: path.resolve(__dirname, './.env') });
 // const app: Express = express();
 
@@ -57,20 +58,22 @@ class Server {
             port: 3306,
             username: process.env.DB_USERNAME,
             password: process.env.DB_PASSWORD,
-            // database: process.env.DB_DATABASE,
+            database: process.env.DB_DATABASE,
             synchronize: true,
-            entities: ['user']
-        }).then(() => { console.log("database connected") })
+            entities: [User]
+        }).then(() => { console.log("database connected") }).catch(() => {
+            console.log("error connecting db")
+        })
         // mysql();
-        this.app.use("/items", itemsRouter);
-        this.app.use("/students", studentRouter);
+        // this.app.use("/items", itemsRouter);
+        // this.app.use("/students", studentRouter);
         //user endpoints
         this.app.use('/users', new userController().getRouter())
     }
 
     public start(): void {
         this.app.listen(PORT, () => {
-            console.log("server started at 8000");
+            console.log(`server started at ${PORT}`);
         })
     }
 }
