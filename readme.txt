@@ -17,3 +17,4 @@ day-10: typeorm on nodejs with mysql
 day-11: controller and routes
 day-12: complete crud operations
 day-13: data_model:one-to-many,many-to-many,one-to-one
+day-14: writing-testcases-with-jest
