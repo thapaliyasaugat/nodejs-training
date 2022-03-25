@@ -3,7 +3,8 @@
   "description": "nodejs training by itonics-2022-feb",
   "scripts": {
     "start": "nodemon --exec ts-node src/app.ts",
-    "jest": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "dependencies": {
     "@types/jest": "^27.4.1",

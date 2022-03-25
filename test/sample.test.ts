@@ -2,6 +2,9 @@
 // integration
 // e2e
 
+import { Request, Response } from "express";
+import userController from "../src/controller/user.controller";
+
 function add(a: number, b: number) {
     return a + b;
 }
@@ -59,6 +62,60 @@ describe('Test Calculation', () => {
     })
 
     // TDD : Test Driven Development- first write tests
+
+    //steps in testing
+    // arrange
+    // act
+    // assert
+
+
+    it("mocking functions", () => {
+        //arrange
+        const mockAdd = jest.fn((a, b) => 'addition');
+        //act
+        const result = mockAdd(1, 2);
+        //assert
+        expect(result).toBe('addition');
+        // expect(result).toBeUndefined();
+        expect(mockAdd(1, 2)).toHaveBeenCalled();
+        // expect(mockAdd).toHaveBeenCalledTimes(1);
+        expect(mockAdd).toHaveBeenCalledWith(1);
+
+        // const  mockAdd= jest.fn();
+        // const result = mockAdd();
+        // expect(result).toBeUndefined();
+
+    })
+
+
+
+    it("mocking implementation functions", () => {
+        //arrange
+        const mockAdd = jest.fn().mockImplementation((a, b) => 'addition');
+        //act
+        const result = mockAdd(1, 2);
+        //assert
+        expect(result).toBe('addition');
+        // expect(result).toBeUndefined();
+        expect(mockAdd(1, 2)).toHaveBeenCalled();
+        // expect(mockAdd).toHaveBeenCalledTimes(1);
+        expect(mockAdd).toHaveBeenCalledWith(1);
+
+    })
+
+
+    it.only("mocking only return value", () => {
+        //arrange
+        const mockAdd = jest.fn()
+        mockAdd.mockReturnValue('addition');
+        //act
+        expect(mockAdd(1)).toBe('addition');
+        //assert
+        expect(mockAdd).toHaveBeenCalled();
+        expect(mockAdd).toHaveBeenCalledWith(1);
+        expect(mockAdd).toHaveBeenCalledTimes(1);
+
+    })
 
 
 })
