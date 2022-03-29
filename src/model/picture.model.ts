@@ -10,8 +10,8 @@ class Picture {
     public uri!: String;
 
     // many to many
-    @ManyToOne(() => User, (user) => user.id)
-    @JoinColumn()
+    @ManyToOne(() => User, (user) => user.id, { eager: true })
+    @JoinColumn({ name: "userId" })
     public user!: User;
 
     // many to many
